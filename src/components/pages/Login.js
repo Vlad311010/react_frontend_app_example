@@ -11,7 +11,7 @@ import LinkButton from '../LinkButton';
 export default function Login() {
     const navigate = useNavigate();
     const [errorMessage, setMessage] = useState("");
-    const userCtx = useContext(UserContext);
+    const { setUser, setAP, setMoney } = useContext(UserContext);
     
     useEffect(()=>{
         Styling.PlainBlackBackground();
@@ -59,7 +59,10 @@ export default function Login() {
         
         if (Object.keys(responce).length !== 0) {
             navigate(Routing.ToIndex);
-            userCtx.setUser(responce);
+            
+            setUser(responce['login']);
+            setAP(responce['ap']);
+            setMoney(responce['money']);
         }
         else {
             setMessage("Wrong login or password");

@@ -7,14 +7,14 @@ import LinkButton from "../LinkButton";
 import RoutingUtils from "../../RoutingUtils";
 
 export default function MyHeroes() {
-    const userCtx = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const [ownedHeroes, setOwnedHeroes] = useState([]);
 
     useEffect(() => {
         Styling.GrayGradientBackground();
 
         async function apiCall() {
-          const apiResponse = userCtx.isLoggedIn() ? await ApiRequest.GetOwnedHeroes(userCtx.user) : [];
+          const apiResponse = user !== "" ? await ApiRequest.GetOwnedHeroes(user) : [];
           setOwnedHeroes(apiResponse);
         }
         apiCall();

@@ -10,13 +10,14 @@ export default function Index() {
         Styling.IndexPageStyle();
     })
 
-    const userCtx = useContext(UserContext);
+    const { user, ap, money, setUser, setAP, setMoney } = useContext(UserContext);
     let buttons;
 
-    if (userCtx.isLoggedIn()) {
+    if (user !== "") {
         buttons = <>
                     <div className="d-grid py-2 gap-3 d-sm-flex justify-content-sm-center">
-                        <a className=" btn btn-primary btn-lg px-4 gap-3">Play!</a>
+                        <LinkButton text="Play!" displayLink="Game" 
+                            route={Routing.ToGame} classes="btn btn-primary btn-lg px-4 gap-3" />
                         <LinkButton text="My Heroes" displayLink="Heroes" 
                             route={Routing.ToHeroes} classes="btn btn-primary btn-lg px-4 gap-3" />
                         <LinkButton text="Inventory" displayLink="Inventory" 

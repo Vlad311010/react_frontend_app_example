@@ -33,5 +33,7 @@ export const UserContext = createContext({
     user: "",
     ap: 0,
     money: 0,
-    setData: () => {}
+    setUser: () => {},
+    setAP: () => {},
+    setMoney: () => {},
 });

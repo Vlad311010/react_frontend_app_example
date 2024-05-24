@@ -5,12 +5,11 @@ import Styling from "../../Styling";
 import { UserContext } from "../UserContext";
 
 export default function HeroesShop() {
-    const userCtx = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [heroes, setHeroes] = useState([]);
     const [ownedHeroesIds, setOwnedHeroes] = useState([]);
-    const colums = 4;
 
     useEffect(() => {
         Styling.GrayGradientBackground();
@@ -18,7 +17,7 @@ export default function HeroesShop() {
         async function apiCall() {
           const heroesApiResponse = await ApiRequest.GetAllHeroes();
           setHeroes(heroesApiResponse);
-          const ownedHeroesApiResponse = await ApiRequest.GetOwnedHeroes(userCtx.user);
+          const ownedHeroesApiResponse = await ApiRequest.GetOwnedHeroes(user);
           setOwnedHeroes(ownedHeroesApiResponse.map(h => h['heroId']));
         }
         apiCall();
@@ -68,7 +67,7 @@ export default function HeroesShop() {
         setSuccessMessage("")
         setErrorMessage("");
 
-        const responce = await ApiRequest.BuyRandomHero(userCtx.user);
+        const responce = await ApiRequest.BuyRandomHero(user);
         if ('error' in responce) {
             setErrorMessage(responce['error']);
         }
@@ -78,10 +77,6 @@ export default function HeroesShop() {
             ownedHeroesCopy.push(responce['id']);
             setOwnedHeroes(ownedHeroesCopy);
         }
-
-
-        // setSuccessMessage("You sealed contract with Artoria [Saber]");
-        // setErrorMessage("You already own all available heroes");
     }
 
 }

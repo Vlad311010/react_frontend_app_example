@@ -121,7 +121,6 @@ export default class ApiRequest {
             login: userLogin
         };
         
-        console.log(`shop/buyItem/${itemId}`);
         let item = await ApiRequest.axiosInstance.post(`shop/buyItem/${itemId}`, body, {withCredentials: true})
             .then(function (response) {
                 return response.data;

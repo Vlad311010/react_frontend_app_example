@@ -6,15 +6,13 @@ import ApiRequest from '../ApiRequests';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
-    const userCtx = useContext(UserContext);
+    const { user, ap, money, setUser } = useContext(UserContext);
     const location = useLocation();
     const navigate = useNavigate();
 
     let navbarDynamicContent;
-    if (userCtx.isLoggedIn()) {
+    if (user !== "") {
         navbarDynamicContent = 
-        <UserContext.Consumer> 
-        {({ user, ap, money }) => (
             <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
                     <div className="nav-link">AP {ap}</div>
@@ -31,8 +29,6 @@ export default function Navbar() {
                     </form>
                 </li>
             </ul>
-        )}
-        </UserContext.Consumer>
     }
     else {
         navbarDynamicContent =
@@ -66,9 +62,9 @@ export default function Navbar() {
 
     async function handleLogout(e) {
         e.preventDefault();
-        
+
         await ApiRequest.Logout();
-        userCtx.logout();
+        setUser("");
         if (location.pathname === "/") {
             window.location.reload();
         }

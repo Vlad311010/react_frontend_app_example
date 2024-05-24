@@ -6,5 +6,6 @@ export default class RoutingUtils {
     static ToHeroes = "/Heroes";
     static ToHeroesShop = "/GetHero";
     static ToShop = "/Shop";
+    static ToGame = "/Game";
 }
 

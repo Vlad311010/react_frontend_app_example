@@ -18,18 +18,18 @@ import "./css/bootstrap/css/bootstrap-utilities.css"
 import "./css/bootstrap-icons/font/bootstrap-icons.css"
 import "./css/bootstrap/js/bootstrap.bundle.min.js"
 import { useContext, useState } from "react";
+import Game from "./components/pages/Game.js";
 
 
 export default function App() {
-  // const userCtx = useContext(UserContext);
   const ctx = new UserCtxManager("");
   const [user, setUser] = useState("");
   const [ap, setAP] = useState(0);
   const [money, setMoney] = useState(0);
+
   return (
-      // <UserContext.Provider value={{user, setUser, ap, setAP, money, setMoney}}>
     <>
-      <UserContext.Provider value = { ctx }>
+      <UserContext.Provider value = {{ user, ap, money, setUser, setAP, setMoney }}>
         <BrowserRouter>
           <Routes>
 
@@ -71,6 +71,12 @@ export default function App() {
             <Route path={RoutingUtils.ToShop} element={  
               <PageContainer showNavbar={true} 
                 pageComponent={() => <Shop />}
+              />}
+            />
+
+            <Route path={RoutingUtils.ToGame} element={  
+              <PageContainer showNavbar={true} 
+                pageComponent={() => <Game />}
               />}
             />
 

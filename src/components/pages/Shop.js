@@ -8,7 +8,7 @@ import { UserContext } from "../UserContext";
 
 export default function Shop() {
     const [items, setItems] = useState([]);
-    const userCtx = useContext(UserContext);
+    const { user, setMoney } = useContext(UserContext);
 
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export default function Shop() {
         description={item['description']}
         image={item['image']}
         price={item['price']}
-        callback={(e) => handleBuyItem(e, userCtx.user, item['id'])}
+        callback={(e) => handleBuyItem(e, user, item['id'])}
         />
     )
 
@@ -51,6 +51,9 @@ export default function Shop() {
         const responce = await ApiRequest.BuyItem(userLogin, itemId);
         if ('error' in responce) {
             console.log(responce['error']);
+        }
+        else {
+            setMoney(responce['moneyLeft']);
         }
 
     }

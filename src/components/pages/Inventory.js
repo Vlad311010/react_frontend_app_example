@@ -5,14 +5,14 @@ import { UserContext } from "../UserContext";
 import Styling from "../../Styling";
 
 export default function MyHeroes() {
-    const userCtx = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const [items, setItems] = useState([]);
 
     useEffect(() => {
         Styling.GrayGradientBackground();
 
         async function apiCall() {
-          const apiResponse = userCtx.isLoggedIn() ? await ApiRequest.GetInventoryItems(userCtx.user) : [];
+          const apiResponse = user != "" ? await ApiRequest.GetInventoryItems(user) : [];
           setItems(apiResponse);
         }
         apiCall();
