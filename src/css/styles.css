@@ -1,0 +1,71 @@
+.Border {
+    border: solid 2px;
+    margin: 2px;
+}
+
+.Border-Topless {
+    border: solid 2px;
+    border-top: none;
+    margin: 2px;
+}
+
+.Border-Bottom {
+    border: solid 2px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.Step {
+    margin-left: 5px;
+}
+
+.HeroView {
+    border: double 5px;
+    border-radius: 3px 4px;
+    padding: 10px;
+    margin: 5px;
+    width: 16vw;
+}
+
+.HeroView-Type {
+    display: flex;
+}
+
+.HPBar {
+    background-color: red;
+    height: 1.2em
+}
+
+.MPBar {
+    background-color: blue;
+    height: 1.2em
+}
+
+.BarText {
+    position: relative;
+    bottom: 1.4em;
+    color: white;
+    text-align: center;
+}
+
+.Clickable {
+    cursor: pointer;
+}
+
+.GridDisplay {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(10px, auto);
+}
+
+.StoreItemWrapper {
+    margin: 10px;
+}
+
+body {
+    background: radial-gradient(#ffffff, #808080);
+}
+
+
+
