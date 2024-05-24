@@ -1,25 +1,85 @@
-import logo from './logo.svg';
-import './App.css';
+import Index from "./components/pages/Index";
+import Login from "./components/pages/Login";
+import MyHeroes from "./components/pages/MyHeroes";
+import HeroesShop from "./components/pages/HeroesShop";
+import Inventory from "./components/pages/Inventory";
+import Shop from "./components/pages/Shop";
+import Registraion from "./components/pages/Registration"
 
-function App() {
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import PageContainer from "./components/PageContainer";
+import { UserContext, UserCtxManager } from "./components/UserContext";
+import RoutingUtils from "./RoutingUtils";
+
+import "./css/styles.css";
+import "./css/bootstrap/css/bootstrap.css";
+import "./css/bootstrap/css/bootstrap-reboot.css"
+import "./css/bootstrap/css/bootstrap-utilities.css"
+import "./css/bootstrap-icons/font/bootstrap-icons.css"
+import "./css/bootstrap/js/bootstrap.bundle.min.js"
+import { useContext, useState } from "react";
+
+
+export default function App() {
+  // const userCtx = useContext(UserContext);
+  const ctx = new UserCtxManager("");
+  const [user, setUser] = useState("");
+  const [ap, setAP] = useState(0);
+  const [money, setMoney] = useState(0);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      // <UserContext.Provider value={{user, setUser, ap, setAP, money, setMoney}}>
+    <>
+      <UserContext.Provider value = { ctx }>
+        <BrowserRouter>
+          <Routes>
+
+            <Route path={RoutingUtils.ToIndex} element={
+              <PageContainer showNavbar={true} 
+                pageComponent={() => <Index />}
+              />}
+            />
+
+            <Route path={RoutingUtils.ToLogin} element={  
+              <PageContainer showNavbar={false} 
+                pageComponent={() => <Login />}
+              />}
+            />
+
+            <Route path={RoutingUtils.ToRegistration} element={  
+              <PageContainer showNavbar={true} 
+                pageComponent={() => <Registraion />}
+              />}
+            />
+            <Route path={RoutingUtils.ToHeroes} element={  
+              <PageContainer showNavbar={true} 
+                pageComponent={() => <MyHeroes />}
+              />}
+            />
+
+            <Route path={RoutingUtils.ToHeroesShop} element={  
+              <PageContainer showNavbar={true} 
+                pageComponent={() => <HeroesShop />}
+              />}
+            />
+
+            <Route path={RoutingUtils.ToInventory} element={  
+              <PageContainer showNavbar={true} 
+                pageComponent={() => <Inventory />}
+              />}
+            />
+
+            <Route path={RoutingUtils.ToShop} element={  
+              <PageContainer showNavbar={true} 
+                pageComponent={() => <Shop />}
+              />}
+            />
+
+            
+          </Routes>
+        </BrowserRouter>
+      </UserContext.Provider>
+    </>
   );
 }
 
-export default App;
+
