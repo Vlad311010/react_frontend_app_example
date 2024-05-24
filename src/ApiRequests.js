@@ -127,7 +127,24 @@ export default class ApiRequest {
             })
             .catch(function (error) {
                 console.log(error);
-                return {}
+                return error.response.data;
+            });
+            
+        return item;
+    }
+
+    static async BuyAPBooster(userLogin) {
+        const body = {
+            login: userLogin
+        };
+        
+        let item = await ApiRequest.axiosInstance.post(`shop/buyAP`, body, {withCredentials: true})
+            .then(function (response) {
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+                return error.response.data;
             });
             
         return item;

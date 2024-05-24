@@ -8,7 +8,7 @@ import Registraion from "./components/pages/Registration"
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PageContainer from "./components/PageContainer";
-import { UserContext, UserCtxManager } from "./components/UserContext";
+import { UserContext } from "./components/UserContext";
 import RoutingUtils from "./RoutingUtils";
 
 import "./css/styles.css";
@@ -17,12 +17,11 @@ import "./css/bootstrap/css/bootstrap-reboot.css"
 import "./css/bootstrap/css/bootstrap-utilities.css"
 import "./css/bootstrap-icons/font/bootstrap-icons.css"
 import "./css/bootstrap/js/bootstrap.bundle.min.js"
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Game from "./components/pages/Game.js";
 
 
 export default function App() {
-  const ctx = new UserCtxManager("");
   const [user, setUser] = useState("");
   const [ap, setAP] = useState(0);
   const [money, setMoney] = useState(0);
@@ -34,53 +33,54 @@ export default function App() {
           <Routes>
 
             <Route path={RoutingUtils.ToIndex} element={
-              <PageContainer showNavbar={true} 
+              <PageContainer showNavbar={true} authorizedOnly={false}
                 pageComponent={() => <Index />}
               />}
             />
 
             <Route path={RoutingUtils.ToLogin} element={  
-              <PageContainer showNavbar={false} 
+              <PageContainer showNavbar={false} authorizedOnly={false}
                 pageComponent={() => <Login />}
               />}
             />
 
             <Route path={RoutingUtils.ToRegistration} element={  
-              <PageContainer showNavbar={true} 
+              <PageContainer showNavbar={true} authorizedOnly={false}
                 pageComponent={() => <Registraion />}
               />}
             />
+
+            
             <Route path={RoutingUtils.ToHeroes} element={  
-              <PageContainer showNavbar={true} 
+              <PageContainer showNavbar={true} authorizedOnly={true}
                 pageComponent={() => <MyHeroes />}
               />}
             />
 
             <Route path={RoutingUtils.ToHeroesShop} element={  
-              <PageContainer showNavbar={true} 
+              <PageContainer showNavbar={true} authorizedOnly={true}
                 pageComponent={() => <HeroesShop />}
               />}
             />
 
             <Route path={RoutingUtils.ToInventory} element={  
-              <PageContainer showNavbar={true} 
+              <PageContainer showNavbar={true} authorizedOnly={true}
                 pageComponent={() => <Inventory />}
               />}
             />
 
             <Route path={RoutingUtils.ToShop} element={  
-              <PageContainer showNavbar={true} 
+              <PageContainer showNavbar={true} authorizedOnly={true}
                 pageComponent={() => <Shop />}
               />}
             />
 
             <Route path={RoutingUtils.ToGame} element={  
-              <PageContainer showNavbar={true} 
+              <PageContainer showNavbar={true} authorizedOnly={true}
                 pageComponent={() => <Game />}
               />}
             />
 
-            
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>

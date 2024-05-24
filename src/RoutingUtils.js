@@ -7,5 +7,7 @@ export default class RoutingUtils {
     static ToHeroesShop = "/GetHero";
     static ToShop = "/Shop";
     static ToGame = "/Game";
+
+    static UnauthorisedRedirect = "/";
 }
 

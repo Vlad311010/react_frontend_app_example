@@ -8,7 +8,7 @@ import { UserContext } from "../UserContext";
 
 export default function Shop() {
     const [items, setItems] = useState([]);
-    const { user, setMoney } = useContext(UserContext);
+    const { user, setMoney, setAP } = useContext(UserContext);
 
 
     useEffect(() => {
@@ -40,6 +40,7 @@ export default function Shop() {
             description="Recieve 5 AP"
             image={APBoosterImg}
             price="250"
+            callback={(e) => handleBuyAP(e, user)}
             />
            {elements}
         </div>
@@ -55,7 +56,19 @@ export default function Shop() {
         else {
             setMoney(responce['moneyLeft']);
         }
+    }
 
+    async function handleBuyAP(e, userLogin) {
+        e.preventDefault();
+
+        const responce = await ApiRequest.BuyAPBooster(userLogin);
+        if ('error' in responce) {
+            console.log(responce['error']);
+        }
+        else {
+            setMoney(responce['moneyLeft']);
+            setAP(responce['ap']);
+        }
     }
 
 }
