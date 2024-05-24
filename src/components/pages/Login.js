@@ -52,10 +52,7 @@ export default function Login() {
         const form = e.target;
         const formData = new FormData(form);
 
-        // const responce = await ApiRequest.Login("Ruf", "11111")
-        const responce = await ApiRequest.Login("u2", "u2")
-        // formData.get("Login")
-        // formData.get("Password")
+        const responce = await ApiRequest.Login(formData.get("Login"), formData.get("Password"))
         
         if (Object.keys(responce).length !== 0) {
             navigate(Routing.ToIndex);
