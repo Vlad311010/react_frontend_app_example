@@ -28,7 +28,7 @@ export default function Shop() {
         description={item['description']}
         image={item['image']}
         price={item['price']}
-        callback={(e) => handleBuyItem(e, user, item['id'])}
+        callback={(e) => handleBuyItem(e, item['id'])}
         />
     )
 
@@ -40,16 +40,16 @@ export default function Shop() {
             description="Recieve 5 AP"
             image={APBoosterImg}
             price="250"
-            callback={(e) => handleBuyAP(e, user)}
+            callback={(e) => handleBuyAP(e)}
             />
            {elements}
         </div>
     );
 
-    async function handleBuyItem(e, userLogin, itemId) {
+    async function handleBuyItem(e, itemId) {
         e.preventDefault();
 
-        const responce = await ApiRequest.BuyItem(userLogin, itemId);
+        const responce = await ApiRequest.BuyItem(itemId);
         if ('error' in responce) {
             console.log(responce['error']);
         }
@@ -58,10 +58,10 @@ export default function Shop() {
         }
     }
 
-    async function handleBuyAP(e, userLogin) {
+    async function handleBuyAP(e) {
         e.preventDefault();
 
-        const responce = await ApiRequest.BuyAPBooster(userLogin);
+        const responce = await ApiRequest.BuyAPBooster();
         if ('error' in responce) {
             console.log(responce['error']);
         }

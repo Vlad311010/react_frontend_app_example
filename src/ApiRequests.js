@@ -73,12 +73,9 @@ export default class ApiRequest {
         return heroes;
     }
 
-    static async BuyRandomHero(userLogin) {
-        const body = {
-            login: userLogin
-        };
+    static async BuyRandomHero() {
 
-        let hero = await ApiRequest.axiosInstance.post(`heroesShop/RandomContract`, body, {withCredentials: true})
+        let hero = await ApiRequest.axiosInstance.post(`heroesShop/RandomContract`, {}, {withCredentials: true})
             .then(function (response) {
                 return response.data;
             })
@@ -116,12 +113,9 @@ export default class ApiRequest {
         return items;
     }
 
-    static async BuyItem(userLogin, itemId) {
-        const body = {
-            login: userLogin
-        };
-        
-        let item = await ApiRequest.axiosInstance.post(`shop/buyItem/${itemId}`, body, {withCredentials: true})
+    static async BuyItem(itemId) {
+               
+        let item = await ApiRequest.axiosInstance.post(`shop/buyItem/${itemId}`, {}, {withCredentials: true})
             .then(function (response) {
                 return response.data;
             })
@@ -133,12 +127,9 @@ export default class ApiRequest {
         return item;
     }
 
-    static async BuyAPBooster(userLogin) {
-        const body = {
-            login: userLogin
-        };
+    static async BuyAPBooster() {
         
-        let item = await ApiRequest.axiosInstance.post(`shop/buyAP`, body, {withCredentials: true})
+        let item = await ApiRequest.axiosInstance.post(`shop/buyAP`, {}, {withCredentials: true})
             .then(function (response) {
                 return response.data;
             })

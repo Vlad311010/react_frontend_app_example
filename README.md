@@ -1,7 +1,7 @@
 
 This is sample React project.  
 
-**react-front** is an implementation of base React project which written with clean architecture and best practices.
+**react_frontend_app_example** is an implementation of base React project which written with clean architecture and best practices.
 This Repository include alternative frontend for *https://github.com/Vlad311010/ASP.NET_web_app_example* web application 
 project created with Asp.Net Core.
 

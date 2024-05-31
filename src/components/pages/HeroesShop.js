@@ -67,7 +67,7 @@ export default function HeroesShop() {
         setSuccessMessage("")
         setErrorMessage("");
 
-        const responce = await ApiRequest.BuyRandomHero(user);
+        const responce = await ApiRequest.BuyRandomHero();
         if ('error' in responce) {
             setErrorMessage(responce['error']);
         }
